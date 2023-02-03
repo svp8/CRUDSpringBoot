@@ -1,0 +1,19 @@
+.category {
+    &__content {
+        display: flex;
+        align-items: center;
+        gap: 5px;
+        margin-bottom: 2px;
+        &__button{
+            border:0.5px solid grey;
+            width:12px
+        }
+        &__image {
+            width: 20px;
+        }
+    }
+
+    &-child {
+        margin-left: 18px;
+    }
+}

@@ -1,1 +1,24 @@
 /* You can add global styles to this file, and also import other style files */
+*{
+    padding: 0;
+    margin: 0;
+    font-family: sans-serif;
+}
+button{
+
+    border: 0;
+}
+
+li{
+    list-style-type: none;
+}
+.block{
+    border: 1px solid black;
+    border-radius: 4px;
+    background-color: aliceblue;
+    padding: 4px;
+}
+html, 
+body {
+    height: 100%;
+}
