@@ -28,7 +28,7 @@ public class Employee {
     private String patronymic;
     private String position;
 
-    @ManyToMany(mappedBy = "executors")
+    @ManyToMany(mappedBy = "executors", fetch = FetchType.LAZY)
 @JsonIgnore
     public List<Order> orders=new ArrayList<>();
 

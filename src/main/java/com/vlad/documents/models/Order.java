@@ -67,13 +67,13 @@ public class Order {
                 '}';
     }
 //    @JsonView(View.Summary.class)
-    @ManyToMany()
+    @ManyToMany(fetch = FetchType.LAZY)
     @JoinTable(
             name = "Order_Executor",
             joinColumns = { @JoinColumn(name = "order_id") },
             inverseJoinColumns = { @JoinColumn(name = "executor_id") }
     )
-   @JsonSerialize(using = CustomSerializer.class)
+//   @JsonSerialize(using = CustomSerializer.class)
 
     private List<Employee> executors=new ArrayList<>();
     @JsonView(View.Summary.class)
@@ -83,7 +83,7 @@ public class Order {
     @JsonView(View.Summary.class)
     private State executionTag;
     @JsonView(View.Summary.class)
-    @Lob
+@Column(length=512)
     private String text;
 
     public void addExecutor(Employee employee){

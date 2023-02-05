@@ -1,8 +1,7 @@
 package com.vlad.documents.controllers;
 
-import com.fasterxml.jackson.annotation.JsonView;
+
 import com.vlad.documents.models.Order;
-import com.vlad.documents.models.View;
 import com.vlad.documents.services.OrderService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -16,7 +15,6 @@ import java.util.List;
 public class OrderController {
     @Autowired
     private OrderService orderService;
-//    @JsonView(View.Summary.class)
     @GetMapping("/all")
     public ResponseEntity<List<Order>> getOrders(){
         return new ResponseEntity<>(orderService.getAll(), HttpStatus.OK);
@@ -28,6 +26,14 @@ public class OrderController {
             return new ResponseEntity<>(order,HttpStatus.OK);
         }
         return new ResponseEntity<>("No such order",HttpStatus.BAD_REQUEST);
+    }
+    @GetMapping("/author/{id}")
+    public ResponseEntity<?> getOrdersByAuthorId(@PathVariable int id){
+        return new ResponseEntity<>(orderService.getByAuthorId(id),HttpStatus.OK);
+    }
+    @GetMapping("/executor/{id}")
+    public ResponseEntity<?> getOrdersByExecutorId(@PathVariable int id){
+        return new ResponseEntity<>(orderService.getByExecutorId(id),HttpStatus.OK);
     }
     @PostMapping("/create")
     public ResponseEntity<Order> createOrder(@RequestBody Order order){

@@ -47,7 +47,14 @@ public class OrderService {
         Optional<Order> temp = orderRepository.findById(id);
         return temp.orElse(null);
     }
-
+    public List<Order> getByAuthorId(int id) {
+        List<Order> temp = orderRepository.findByAuthor_Id(id);
+        return temp;
+    }
+    public List<Order> getByExecutorId(int id) {
+        List<Order> temp =orderRepository.findByExecutor(id);
+        return temp;
+    }
 
     public Order editOrder(Order order) {
         System.out.println(order);
