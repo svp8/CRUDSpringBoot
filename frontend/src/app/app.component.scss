@@ -10,17 +10,20 @@
         .tabs{
             display: flex;
             flex-direction: row;
-            gap:5px;
+            // gap:5px;
             .tab{
                 display: flex;
                 flex-direction: row;
                 align-items: center;
                 border: 1px solid grey;
-                // background-color: beige;
+                background-color: rgb(228, 228, 228);
                 border-bottom: 0;
                 padding: 4px;
-                border-start-start-radius: 5px;
-
+                border-top-left-radius: 5px;
+                border-top-right-radius: 5px;
+                &-active{
+                    background-color: white;
+                }
                 &__button{
                     width: 15px;
                     padding: 2px;
@@ -28,7 +31,7 @@
             }
         }
         .content{
-            border: 1px solid #ccc;
+            border: 1px solid grey;
             background-color: white;
             flex: 1;
             border-top: 0;

@@ -14,11 +14,11 @@
                     <span>{{child.name}}</span>
                 </div>
                 <ul *ngIf="child.visible" class="category-child">
-                    <li *ngFor="let child2 of child.items" class="category">
+                    <li *ngFor="let child2 of child.items" class="category" (click)="onSelectedItem(child2)">
                         <div class="category__content" style="margin-left: 20px;">
                             <!-- <button>+</button> -->
                             <img class="category__content__image" src="assets/folder_open.svg" />
-                            <span>{{child2.name}}</span>
+                            <span>{{child2}}</span>
                         </div>
                         
                     </li>
@@ -36,7 +36,7 @@
         </div>
 
         <ul *ngIf="orders.visible" class="category-child">
-            <li *ngFor="let child of orders.chItems" class="category">
+            <li *ngFor="let child of orders.chItems" (click)="onSelectedItem(child)" class="category">
                 <div class="category__content">
                     <img class="category__content__image" src="assets/organisation.svg" />
                     <span>{{child}}</span>

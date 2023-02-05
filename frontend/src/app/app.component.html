@@ -1,19 +1,14 @@
-<h1 style="padding: 10px;">Website</h1>
+<!-- <h1 style="padding: 10px;">Website</h1>
 <div class="main">
-  <app-menu class="menu block"></app-menu>
+  <app-menu class="menu block"
+  (onSelected)="onSelectedItem($event)"
+  ></app-menu>
   <div class="windows block">
+    
     <ul class="tabs">
-      <li class="tab">
-        <span>Tab 1</span>
-        <input type="image" src="assets/close.svg" class="tab__button" />
-      </li>
-      <li class="tab">
-        <span>Tab 1</span>
-        <input type="image" src="assets/close.svg" class="tab__button" />
-      </li>
-      <li class="tab">
-        <span>Tab 1</span>
-        <input type="image" src="assets/close.svg" class="tab__button" />
+      <li *ngFor="let tab of tabs;index as i"  class="tab" [ngClass]="selectedTab==i ? 'tab-active' : 'tab'">
+        <span (click)="onTabSelected(i)">{{tab}}</span>
+        <input type="image" src="assets/close.svg" class="tab__button" (click)="onTabDeleted(i)" />
       </li>
     </ul>
     <div class="content">
@@ -21,4 +16,5 @@
       <input type="text">
     </div>
   </div>
-</div>
+</div> -->
+<my-app style="height: 100%;display: flex;flex-direction: column;"></my-app>
