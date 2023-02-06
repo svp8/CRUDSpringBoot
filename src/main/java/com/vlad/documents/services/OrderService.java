@@ -19,12 +19,6 @@ public class OrderService {
 
 
     public Order addOrder(Order order) {
-
-        for (Employee e : order.getExecutors()) {
-            e.addOrder(order);
-            employeeRepository.save(e);
-        }
-
         Order savedOrder = orderRepository.save(order);
 
         return savedOrder;
@@ -34,10 +28,6 @@ public class OrderService {
     public void delete(int id) {
         Order order = orderRepository.findById(id).orElse(null);
         if (order != null) {
-            for (Employee e : order.getExecutors()) {
-                e.deleteOrder(order);
-                employeeRepository.save(e);
-            }
             orderRepository.deleteById(id);
         }
     }

@@ -11,6 +11,8 @@ import { PersonEditComponent } from './test/person-edit.component';
 import { PeopleListComponent } from './test/people-list.component';
 import { ReactiveFormsModule } from '@angular/forms';
 import { TableComponent } from './test/table.component';
+import { DepartmentEditComponent } from './test/department-edit.component';
+import { EmployeeEditComponent } from './test/employee-edit.component';
 
 @NgModule({
   declarations: [
@@ -22,7 +24,9 @@ import { TableComponent } from './test/table.component';
     TableComponent,
     DynamicTabsDirective,
     PersonEditComponent,
-    PeopleListComponent
+    PeopleListComponent,
+    DepartmentEditComponent,
+    EmployeeEditComponent
   ],
   imports: [
     BrowserModule, ReactiveFormsModule

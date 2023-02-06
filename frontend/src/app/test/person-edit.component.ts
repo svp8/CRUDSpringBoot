@@ -7,7 +7,7 @@ import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 import { FormBuilder, FormGroup } from '@angular/forms';
 
 @Component({
-  selector: 'person-edit',
+  selector: 'order-edit',
   template: `
   <h1>sdasjdsakj</h1>
     <form [formGroup]="personForm" (ngSubmit)="onPersonFormSubmit()">
@@ -54,7 +54,7 @@ export class PersonEditComponent implements OnInit {
       "title": "",
       "author": {},
       "executors": [],
-      "date": "12/12/12 07:12:12",
+      "date": "",
       "controlTag": "",
       "executionTag": null,
       "text": ""
@@ -64,11 +64,11 @@ export class PersonEditComponent implements OnInit {
   ngOnInit() {
     
     this.personForm.setValue({
-      "id":this.person|| -1,
+      "id":this.person.id|| -1,
       "title": this.person.title ||'',
       "author": this.person.author||{},
       "executors":this.person.executors ||[],
-      "date": this.person.date ||"12/12/12 07:12:12",
+      "date": this.person.date||"",
       "controlTag":this.person.controlTag|| "",
       "executionTag": this.person.executionTag || null,
       "text": this.person.text||""

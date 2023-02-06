@@ -18,7 +18,8 @@ import java.util.*;
 public class CustomEmployeeDeserializer extends StdDeserializer<Order> {
     @Autowired
     EmployeeService employeeService;
-    public CustomEmployeeDeserializer(){
+
+    public CustomEmployeeDeserializer() {
         this(null);
     }
 
@@ -31,37 +32,50 @@ public class CustomEmployeeDeserializer extends StdDeserializer<Order> {
     public Order deserialize(JsonParser jsonParser, DeserializationContext deserializationContext) throws IOException, JacksonException {
         JsonNode node = jsonParser.getCodec().readTree(jsonParser);
         System.out.println(jsonParser.getText());
-        JsonNode ids=node.get("executors");
-        ArrayList<Employee> employees=new ArrayList<>();
-        if(ids!=null){
-            for(JsonNode jsonNode:ids){
-                int id=jsonNode.asInt();
+        JsonNode ids = node.get("executors");
+        ArrayList<Employee> employees = new ArrayList<>();
+        if (ids != null) {
+            for (JsonNode jsonNode : ids) {
+                int id;
+                if (jsonNode.has("id")) {
+                    id = jsonNode.get("id").asInt();
+                } else {
+                    id = jsonNode.asInt();
+
+                }
                 employees.add(employeeService.getById(id));
+
             }
         }
-        int id=node.has("id")?node.get("id").asInt():-1;
-        int authorId=node.get("author").asInt();
+        int id = node.has("id") ? node.get("id").asInt() : -1;
+        JsonNode authorNode=node.get("author");
+        int authorId;
+        if(authorNode.has("id")){
+            authorId=authorNode.get("id").asInt();
+        }
+        else {
+            authorId = node.get("author").asInt();
+        }
 
-        String title=node.get("title").asText();
-        String controlTag=node.has("controlTag")?node.get("controlTag").asText():"";
-        SimpleDateFormat formatter = new SimpleDateFormat("dd/MM/yyyy HH:mm:ss");
-        String dateInString = node.has("date")? node.get("date").asText():null;
+        String title = node.get("title").asText();
+        boolean controlTag = node.has("controlTag") && !node.get("controlTag").asText().contentEquals("null") && node.get("controlTag").asBoolean();
+        SimpleDateFormat formatter = new SimpleDateFormat("dd.MM.yyyy");
+        String dateInString = node.has("date") ? node.get("date").asText() : null;
         Date date = null;
         try {
             date = formatter.parse(dateInString);
         } catch (ParseException e) {
             throw new RuntimeException(e);
         }
-        String text=node.get("text").asText();
-        Order.State state= node.has("executionTag")&&!node.get("executionTag").asText().contentEquals("null")?Order.State.valueOf(node.get("executionTag").asText()):null;
+        String text = node.get("text").asText();
+        boolean state = node.has("executionTag") && !node.get("executionTag").asText().contentEquals("null") && node.get("executionTag").asBoolean();
         System.out.println(state);
-        Employee author=employeeService.getById(authorId);
+        Employee author = employeeService.getById(authorId);
         System.out.println(author);
-if(id!=-1){
-    return new Order(id,title,author, employees,date,controlTag, state,text);
-}
-else{
-    return new Order(title,author, employees,date,controlTag,state,text);
-}
+        if (id != -1) {
+            return new Order(id, title, author, employees, date, controlTag, state, text);
+        } else {
+            return new Order(title, author, employees, date, controlTag, state, text);
+        }
     }
 }

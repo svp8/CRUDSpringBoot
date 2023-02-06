@@ -20,6 +20,9 @@
     "module": "ES2022",
     "useDefineForClassFields": false,
     "allowJs": true,
+    "suppressImplicitAnyIndexErrors": true,
+    "strictNullChecks":false,
+    "strictPropertyInitialization": false,
     "lib": [
       "ES2022",
       "dom"

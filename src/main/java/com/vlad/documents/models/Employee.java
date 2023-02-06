@@ -23,7 +23,7 @@ public class Employee {
     @JsonView(View.Summary.class)
 
     private int id;
-    private String secondName;
+    private String surname;
     private String firstName;
     private String patronymic;
     private String position;
@@ -51,7 +51,7 @@ public class Employee {
     public String toString() {
         return "Employee{" +
                 "id=" + id +
-                ", secondName='" + secondName + '\'' +
+                ", secondName='" + surname + '\'' +
                 ", firstName='" + firstName + '\'' +
                 ", patronymic='" + patronymic + '\'' +
                 ", position='" + position + '\'' +

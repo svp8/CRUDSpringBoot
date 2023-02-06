@@ -1,5 +1,5 @@
 
-  with data(second_name, first_name, patronymic, position)  as (
+  with data(surname, first_name, patronymic, position)  as (
      values
         ( 'Папенькин', 'Владислав', 'Сергеевич', 'boss'),
         ( 'Иванов', 'Иван', 'Иванович', 'worker'),
@@ -11,8 +11,8 @@
 --              ( 'Яндекс', 'Ленина 13', 'Пушкина 2'),
 --              ( 'Гугл',  'fsdfs 12', 'лджлж 32')
 --        )
-  insert into employee (second_name, first_name, patronymic, position)
-  select d.second_name, d.first_name, d.patronymic, d.position
+  insert into employee (surname, first_name, patronymic, position)
+  select d.surname, d.first_name, d.patronymic, d.position
   from data d
   where not exists (SELECT * FROM employee);
     insert into organisation (name, phys_address, legal_address)

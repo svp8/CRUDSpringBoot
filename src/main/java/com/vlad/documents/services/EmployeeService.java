@@ -30,4 +30,7 @@ public class EmployeeService {
     public List<Employee> getAll() {
         return employeeRepository.findAll();
     }
+    public void delete(int id){
+        employeeRepository.deleteById(id);
+    }
 }

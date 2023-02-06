@@ -22,7 +22,7 @@ import java.util.List;
 @NoArgsConstructor
 
 public class Order {
-    public Order(String title, Employee author, List<Employee> executors, Date date, String controlTag, State executionTag, String text) {
+    public Order(String title, Employee author, List<Employee> executors, Date date, boolean controlTag, boolean executionTag, String text) {
         this.title = title;
         this.author = author;
         this.executors = executors;
@@ -32,7 +32,7 @@ public class Order {
         this.text = text;
     }
 
-    public Order(int id, String title, Employee author, List<Employee> executors, Date date, String controlTag, State executionTag, String text) {
+    public Order(int id, String title, Employee author, List<Employee> executors, Date date, boolean controlTag, boolean executionTag, String text) {
         this.id = id;
         this.title = title;
         this.author = author;
@@ -79,9 +79,9 @@ public class Order {
     @JsonView(View.Summary.class)
     private Date date;
     @JsonView(View.Summary.class)
-    private String controlTag;
+    private boolean controlTag;
     @JsonView(View.Summary.class)
-    private State executionTag;
+    private boolean executionTag;
     @JsonView(View.Summary.class)
 @Column(length=512)
     private String text;
