@@ -3,7 +3,7 @@
         <div class="category__content">
             <button class="category__content__button" (click)="orgs.visible=!orgs.visible">{{!orgs.visible?'+':'-'}}</button>
             <img class="category__content__image" src="assets/folder_open.svg" />
-            <span>{{orgs.name}}</span>
+            <span (click)="orgs.visible=!orgs.visible">{{orgs.name}}</span>
         </div>
 
         <ul *ngIf="orgs.visible" class="category-child">
@@ -11,13 +11,13 @@
                 <div class="category__content">
                     <button class="category__content__button" (click)="child.visible=!child.visible">{{!child.visible?'+':'-'}}</button>
                     <img class="category__content__image" src="assets/organisation.svg" />
-                    <span>{{child.name}}</span>
+                    <span >{{child.name}}</span>
                 </div>
                 <ul *ngIf="child.visible" class="category-child">
                     <li *ngFor="let child2 of child.items" class="category" (click)="onSelectedItem(child2)">
                         <div class="category__content" style="margin-left: 20px;">
                             <!-- <button>+</button> -->
-                            <img class="category__content__image" src="assets/folder_open.svg" />
+                            <img class="category__content__image" src="assets/doc.svg" />
                             <span>{{child2}}</span>
                         </div>
                         
@@ -32,13 +32,13 @@
         <div class="category__content">
             <button class="category__content__button" (click)="orders.visible=!orders.visible">{{!orders.visible?'+':'-'}}</button>
             <img class="category__content__image" src="assets/folder_open.svg" />
-            <span>{{orders.name}}</span>
+            <span (click)="orders.visible=!orders.visible"> {{orders.name}}</span>
         </div>
 
         <ul *ngIf="orders.visible" class="category-child">
             <li *ngFor="let child of orders.chItems" (click)="onSelectedItem(child)" class="category">
                 <div class="category__content">
-                    <img class="category__content__image" src="assets/organisation.svg" />
+                    <img class="category__content__image" src="assets/doc.svg" />
                     <span>{{child}}</span>
                 </div>
             </li>

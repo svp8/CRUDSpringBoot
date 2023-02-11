@@ -43,9 +43,9 @@ public class OrderController {
         return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
     }
     @PostMapping("/update")
-    public ResponseEntity<Order> editOrder(@RequestBody Order order){
+    public ResponseEntity<?> editOrder(@RequestBody Order order){
         if(orderService.getById(order.getId())!=null){
-            return new ResponseEntity<>(orderService.editOrder(order),HttpStatus.OK);
+            return orderService.editOrder(order);
         }
         return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
     }

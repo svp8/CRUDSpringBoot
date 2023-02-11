@@ -31,7 +31,6 @@ public class CustomEmployeeDeserializer extends StdDeserializer<Order> {
     @Override
     public Order deserialize(JsonParser jsonParser, DeserializationContext deserializationContext) throws IOException, JacksonException {
         JsonNode node = jsonParser.getCodec().readTree(jsonParser);
-        System.out.println(jsonParser.getText());
         JsonNode ids = node.get("executors");
         ArrayList<Employee> employees = new ArrayList<>();
         if (ids != null) {
@@ -69,9 +68,7 @@ public class CustomEmployeeDeserializer extends StdDeserializer<Order> {
         }
         String text = node.get("text").asText();
         boolean state = node.has("executionTag") && !node.get("executionTag").asText().contentEquals("null") && node.get("executionTag").asBoolean();
-        System.out.println(state);
         Employee author = employeeService.getById(authorId);
-        System.out.println(author);
         if (id != -1) {
             return new Order(id, title, author, employees, date, controlTag, state, text);
         } else {

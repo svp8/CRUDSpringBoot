@@ -23,7 +23,9 @@ public class Employee {
     @JsonView(View.Summary.class)
 
     private int id;
+    @Column(nullable = false)
     private String surname;
+    @Column(nullable = false)
     private String firstName;
     private String patronymic;
     private String position;

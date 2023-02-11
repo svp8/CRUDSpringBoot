@@ -1,10 +1,15 @@
 package com.vlad.documents.services;
 
 import com.vlad.documents.models.Employee;
+import com.vlad.documents.models.Events;
 import com.vlad.documents.models.Order;
+import com.vlad.documents.models.States;
 import com.vlad.documents.repositories.EmployeeRepository;
 import com.vlad.documents.repositories.OrderRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
+import org.springframework.statemachine.StateMachine;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -16,9 +21,14 @@ public class OrderService {
     private OrderRepository orderRepository;
     @Autowired
     private EmployeeRepository employeeRepository;
+    @Autowired
+    private StateMachine<States, Events> stateMachine;
+
 
 
     public Order addOrder(Order order) {
+        order.setControlTag(false);
+        order.setExecutionTag(false);
         Order savedOrder = orderRepository.save(order);
 
         return savedOrder;
@@ -46,35 +56,15 @@ public class OrderService {
         return temp;
     }
 
-    public Order editOrder(Order order) {
-        System.out.println(order);
+    public ResponseEntity<?> editOrder(Order order) {
+        boolean control=order.getControlTag();
+        boolean execution= order.getExecutionTag();
+        if(!execution&&control){
+            return new ResponseEntity<>("Нельзя пройти контроль", HttpStatus.BAD_REQUEST);
+        }
+//        Order order1=orderRepository.findById(order.getId()).orElse(null);
 
-//        Order oldOrder=orderRepository.findById(order.getId()).orElse(null);
-//        if(oldOrder.getExecutors()!=null){
-//            List<Employee> deletedExecutors=oldOrder.getExecutors().stream().filter(e->{
-//                for(Employee e1:order.getExecutors()){
-//                    if(e.getId()==e1.getId()){
-//                        return false;
-//                    }
-//                }
-//                return true;
-//            }).toList();
-//            System.out.println("123");
-//            System.out.println(deletedExecutors.);
-//            for(int i=0;i<deletedExecutors.size();i++){
-//                Employee e=deletedExecutors.get(i);
-//                e.deleteOrder(oldOrder);
-//               System.out.println(employeeRepository.save(e));
-//            }
-//        }
-//        System.out.println(order.getExecutors());
-//        for(int i=0;i<order.getExecutors().size();i++){
-//            Employee e=order.getExecutors().get(i);
-//            e.addOrder(order);
-//            employeeRepository.save(e);
-//        }
-
-        return orderRepository.save(order);
+        return new ResponseEntity<>(orderRepository.save(order),HttpStatus.OK);
     }
 
     public List<Order> getAll() {

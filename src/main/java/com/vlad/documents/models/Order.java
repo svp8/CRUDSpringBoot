@@ -2,9 +2,7 @@ package com.vlad.documents.models;
 
 import com.fasterxml.jackson.annotation.JsonView;
 import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
-import com.fasterxml.jackson.databind.annotation.JsonSerialize;
 import com.vlad.documents.CustomEmployeeDeserializer;
-import com.vlad.documents.CustomSerializer;
 import jakarta.annotation.Nonnull;
 import jakarta.persistence.*;
 import lombok.Getter;
@@ -51,7 +49,8 @@ public class Order {
     @Column(nullable = false)
     private String title;
     @JsonView(View.Summary.class)
-    @ManyToOne
+    @ManyToOne()
+    @Nonnull
     private Employee author;
 
     @Override
@@ -66,14 +65,12 @@ public class Order {
                 ", text='" + text + '\'' +
                 '}';
     }
-//    @JsonView(View.Summary.class)
-    @ManyToMany(fetch = FetchType.LAZY)
+    @ManyToMany(fetch = FetchType.LAZY,cascade = {CascadeType.MERGE, CascadeType.PERSIST,CascadeType.REFRESH})
     @JoinTable(
             name = "Order_Executor",
             joinColumns = { @JoinColumn(name = "order_id") },
             inverseJoinColumns = { @JoinColumn(name = "executor_id") }
     )
-//   @JsonSerialize(using = CustomSerializer.class)
 
     private List<Employee> executors=new ArrayList<>();
     @JsonView(View.Summary.class)
@@ -100,11 +97,12 @@ public class Order {
             employee1.getOrders().remove(this);
         }
     }
-    public enum State{
-        PREPARATION,
-        EXECUTION,
-        CONTROL,
-        MODIFICATION,
-        ACCEPTION
+
+
+    public boolean getControlTag(){
+        return this.controlTag;
+    }
+    public boolean getExecutionTag(){
+        return this.executionTag;
     }
 }

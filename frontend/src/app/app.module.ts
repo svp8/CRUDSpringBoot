@@ -2,17 +2,18 @@ import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 
 import { AppComponent } from './app.component';
-import { MyAppComponent } from './test/myapp.component';
+import { MyAppComponent } from './main/myapp.component';
 import { MenuComponent } from './components/menu/menu.component';
-import { TabsComponent } from './test/tabs.component';
-import { TabComponent } from './test/tab.component';
-import { DynamicTabsDirective } from './test/dynamic-tabs.directive';
-import { PersonEditComponent } from './test/person-edit.component';
-import { PeopleListComponent } from './test/people-list.component';
+import { TabsComponent } from './main/tabs.component';
+import { TabComponent } from './main/tab.component';
+import { DynamicTabsDirective } from './main/dynamic-tabs.directive';
+import { OrderEditComponent } from './main/order-edit.component';
 import { ReactiveFormsModule } from '@angular/forms';
-import { TableComponent } from './test/table.component';
-import { DepartmentEditComponent } from './test/department-edit.component';
-import { EmployeeEditComponent } from './test/employee-edit.component';
+import { TableComponent } from './main/table.component';
+import { DepartmentEditComponent } from './main/department-edit.component';
+import { EmployeeEditComponent } from './main/employee-edit.component';
+import { FormsModule } from '@angular/forms';
+import { NgSelectModule } from '@ng-select/ng-select';
 
 @NgModule({
   declarations: [
@@ -23,13 +24,12 @@ import { EmployeeEditComponent } from './test/employee-edit.component';
     TabComponent,
     TableComponent,
     DynamicTabsDirective,
-    PersonEditComponent,
-    PeopleListComponent,
+    OrderEditComponent,
     DepartmentEditComponent,
     EmployeeEditComponent
   ],
   imports: [
-    BrowserModule, ReactiveFormsModule
+    BrowserModule, ReactiveFormsModule,FormsModule,NgSelectModule
   ],
   providers: [],
   bootstrap: [AppComponent],
