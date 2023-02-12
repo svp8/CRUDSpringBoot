@@ -83,21 +83,6 @@ public class Order {
 @Column(length=512)
     private String text;
 
-    public void addExecutor(Employee employee){
-        if(!this.executors.contains(employee)){
-            this.executors.add(employee);
-            employee.getOrders().add(this);
-        }
-
-    }
-    public void deleteExecutor(Employee employee){
-        Employee employee1=this.executors.stream().filter(employee2 -> employee2.getId()==employee.getId()).findFirst().orElse(null);
-        if(employee1!=null){
-            this.executors.remove(employee1);
-            employee1.getOrders().remove(this);
-        }
-    }
-
 
     public boolean getControlTag(){
         return this.controlTag;

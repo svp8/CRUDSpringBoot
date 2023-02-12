@@ -40,9 +40,9 @@ export class EmployeeEditComponent implements OnInit {
 
   constructor(private fb: FormBuilder) {
     this.form = this.fb.group({
-      firstName: new FormControl("", Validators.required),
+      firstName: new FormControl("", [Validators.required,Validators.pattern(/^(\s+\S+\s*)*(?!\s).*$/)]),
       id: -1,
-      surname: new FormControl("", Validators.required),
+      surname: new FormControl("", [Validators.required,Validators.pattern(/^(\s+\S+\s*)*(?!\s).*$/)]),
       patronymic: "",
       position: ""
     });

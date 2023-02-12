@@ -1,0 +1,258 @@
+{
+	"info": {
+		"_postman_id": "1b25ecf0-8406-4a9e-9ba3-37107331edad",
+		"name": "documents",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "localhost:8080/order/all",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "localhost:8080/order/all",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"order",
+						"all"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "localhost:8080/order/id",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "localhost:8080/order/all",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"order",
+						"all"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "localhost:8080/order/create",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"text\":\"adsadsads\",\r\n    \"title\":\"abc\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "localhost:8080/order/create",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"order",
+						"create"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "localhost:8080/order/update",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"text\":\"adsadsads\",\r\n    \"title\":\"abc\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "localhost:8080/order/update",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"order",
+						"update"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "localhost:8080/department/create",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"text\":\"adsadsads\",\r\n    \"title\":\"abc\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "localhost:8080/order/update",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"order",
+						"update"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "localhost:8080/users/all",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "localhost:8080/users/all",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"users",
+						"all"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "localhost:8080/users",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"url": {
+					"raw": "localhost:8080/users",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"users"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "localhost:8080/order/2",
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"url": {
+					"raw": "localhost:8080/order/3",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"order",
+						"3"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "localhost:8080/order/author/2",
+			"request": {
+				"method": "GET",
+				"header": []
+			},
+			"response": []
+		},
+		{
+			"name": "localhost:8080/order/executor/2",
+			"request": {
+				"method": "GET",
+				"header": []
+			},
+			"response": []
+		},
+		{
+			"name": "localhost:8080/search/order",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"attribute\":\"title\",\r\n    \"query\":\"f\",\r\n    \"className\":\"Order\",\r\n    \"orders\":[\r\n        {\r\n        \"id\": 2,\r\n        \"title\": \"fdsf\",\r\n        \"author\": {\r\n            \"id\": 2,\r\n            \"surname\": \"Иванов\",\r\n            \"firstName\": \"Иван\",\r\n            \"patronymic\": \"Иванович\",\r\n            \"position\": \"worker\"\r\n        },\r\n        \"executors\": [],\r\n        \"date\": \"12.12.16\",\r\n        \"controlTag\": false,\r\n        \"executionTag\": false,\r\n        \"text\": \"jhkjhk\"\r\n    },\r\n    {\r\n        \"id\": 3,\r\n        \"title\": \"45jk\",\r\n        \"author\": {\r\n            \"id\": 2,\r\n            \"surname\": \"Иванов\",\r\n            \"firstName\": \"Иван\",\r\n            \"patronymic\": \"Иванович\",\r\n            \"position\": \"worker\"\r\n        },\r\n        \"executors\": [],\r\n        \"date\": \"12.12.12\",\r\n        \"controlTag\": true,\r\n        \"executionTag\": false,\r\n        \"text\": \"mjjhmj\"\r\n    },\r\n    {\r\n        \"id\": 4,\r\n        \"title\": \"a\",\r\n        \"author\": {\r\n            \"id\": 1,\r\n            \"surname\": \"Папенькин\",\r\n            \"firstName\": \"Владислав\",\r\n            \"patronymic\": \"Сергеевич\",\r\n            \"position\": \"boss\"\r\n        },\r\n        \"executors\": [],\r\n        \"date\": \"12.12.12\",\r\n        \"controlTag\": false,\r\n        \"executionTag\": false,\r\n        \"text\": \"\"\r\n    }\r\n    ]\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "localhost:8080/search/order",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"search",
+						"order"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "localhost:8080/search",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"attribute\":\"manager\",\r\n    \"query\":\"В\",\r\n    \"className\":\"Department\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "localhost:8080/search",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"search"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}

@@ -29,7 +29,7 @@ import { searchByAttribute, searchByOrderAttribute } from 'src/assets/api/search
         </th>
       </thead>
       <tbody *ngIf="headers[0].name=='Предмет‌ ‌поручения'">
-        <tr *ngFor="let i of items" (dblclick)="edit.emit(i)" (click)="select(i)" [ngClass]="checkInSelected(i)?'selected':'notSelected'">
+        <tr *ngFor="let i of tableArrayPage" (dblclick)="edit.emit(i)" (click)="select(i)" [ngClass]="checkInSelected(i)?'selected':'notSelected'">
           <!-- <td *ngFor="let key of Object.keys(i)" >{{ i[key] }}</td> -->
           <td>{{i["title"]}}</td>
           <td>{{i["date"]}}</td>
@@ -39,7 +39,7 @@ import { searchByAttribute, searchByOrderAttribute } from 'src/assets/api/search
         </tr>
       </tbody>
       <tbody *ngIf="headers[0].name=='Наименование‌ ‌подразделения'">
-        <tr *ngFor="let i of items" (dblclick)="edit.emit(i)" (click)="select(i)" [ngClass]="checkInSelected(i)?'selected':'notSelected'">
+        <tr *ngFor="let i of tableArrayPage" (dblclick)="edit.emit(i)" (click)="select(i)" [ngClass]="checkInSelected(i)?'selected':'notSelected'">
           <!-- <td *ngFor="let key of Object.keys(i)" >{{ i[key] }}</td> -->
           <td>{{i["name"]}}</td>
           <td>{{i["contactInfo"]}}</td>
@@ -47,7 +47,7 @@ import { searchByAttribute, searchByOrderAttribute } from 'src/assets/api/search
         </tr>
       </tbody>
       <tbody *ngIf="headers[0].name=='Фамилия'">
-        <tr *ngFor="let i of items" (dblclick)="edit.emit(i)" (click)="select(i)" [ngClass]="checkInSelected(i)?'selected':'notSelected'">
+        <tr *ngFor="let i of tableArrayPage" (dblclick)="edit.emit(i)" (click)="select(i)" [ngClass]="checkInSelected(i)?'selected':'notSelected'">
           <td>{{i["surname"]}}</td>
           <td>{{i["firstName"]}}</td>
           <td>{{i["patronymic"]}}</td>
@@ -55,6 +55,20 @@ import { searchByAttribute, searchByOrderAttribute } from 'src/assets/api/search
         </tr>
       </tbody>
   </table>
+  <div class="pages">
+      <div class="flex">
+        <button  (click)="goToPage(currentPage-1)" class="pages__button ">Назад</button>
+        <button class="pages__number" [ngClass]="currentPage==page+1?'pages__number-active':''" *ngFor="let p of [].constructor(pagesNow);let page=index"
+          (click)="goToPage(page+1)">{{page+1}}</button>
+        <button  (click)="goToPage(currentPage+1)" class="pages__button">Вперед</button>
+      </div>
+      <select [(ngModel)]="pageSize">
+        <option [value]="5">5</option>
+        <option [value]="10">10</option>
+        <option [value]="15">15</option>
+        <option [value]="100">100</option>
+      </select>
+    </div>
   `
 
 })
@@ -69,11 +83,27 @@ export class TableComponent {
   @Output() add = new EventEmitter<any>();
   @Output() edit = new EventEmitter<any>();
   Object = Object;
+  tableArrayPage:Array<any>=[];
+  pageSize= 5
+  currentPage=1
+  pages=1
   ngOnInit() {
     this.headers = this.data[0];
-    // this.selectedAttribute=this.headers[0];
     this.items = this.data[1];
-  
+  }
+  get pagesNow() {
+    this.tableArrayPage = this.items.filter((row, index) => {
+      let start = (this.currentPage - 1) * this.pageSize;
+      let end = this.currentPage * this.pageSize;
+      if (index >= start && index < end) return true;
+      return false;
+    })
+    return Math.ceil(this.items.length / this.pageSize)
+  }
+  goToPage(page:number) {
+    if (page > 0 && page <= Math.ceil(this.items.length / this.pageSize)) {
+      this.currentPage = page;
+    }
   }
   select(item:any){
   

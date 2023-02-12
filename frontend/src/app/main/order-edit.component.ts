@@ -66,13 +66,13 @@ export class OrderEditComponent implements OnInit {
   selectedExecutors:Array<any>;
 
 
-  authorControl = new FormControl("", Validators.required);
+  authorControl = new FormControl("", [Validators.required,Validators.pattern(/^(\s+\S+\s*)*(?!\s).*$/)]);
   constructor(private fb: FormBuilder) {
     this.orderForm = this.fb.group({
       "id": 0,
-      "title": new FormControl("", Validators.required),
+      "title": new FormControl("", [Validators.required,Validators.pattern(/^(\s+\S+\s*)*(?!\s).*$/)]),
       "executors": [],
-      "date": new FormControl("", Validators.required),
+      "date": new FormControl("", [Validators.required,Validators.pattern(/^(\s+\S+\s*)*(?!\s).*$/)]),
       "controlTag": "",
       "executionTag": null,
       "text": "",

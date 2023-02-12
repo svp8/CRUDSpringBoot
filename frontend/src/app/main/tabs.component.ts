@@ -99,14 +99,18 @@ export class TabsComponent{
         let viewContainerRef = this.dynamicTabPlaceholder.viewContainer;
         // let viewContainerRef = this.dynamicTabPlaceholder;
         viewContainerRef.remove(i);
-        // set tab index to 1st one
         if(tab.active){
           if(this.dynamicTabs.length!=0){
-            this.selectTab(this.dynamicTabs[0])
+             if(i==0){
+              this.selectTab(this.dynamicTabs[0])
+            }
+            else if(this.dynamicTabs.length>=1){
+              console.log(i)
+              this.selectTab(this.dynamicTabs[i-1])
+            }
           }
           
         }
-        // this.selectTab(this.tabs.first);
         break;
       }
     }

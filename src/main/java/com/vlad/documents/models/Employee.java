@@ -34,18 +34,10 @@ public class Employee {
 @JsonIgnore
     public List<Order> orders=new ArrayList<>();
 
-    public void addOrder(Order order){
-        if(!this.orders.contains(order)){
-            this.orders.add(order);
-//            order.addExecutor(this);
-        }
-
-    }
     public void deleteOrder(Order order){
         Order order1=this.orders.stream().filter(order2 -> order2.getId()==order.getId()).findFirst().orElse(null);
         if(order1!=null){
             this.orders.remove(order1);
-//            order1.getExecutors().remove(this);
         }
     }
 

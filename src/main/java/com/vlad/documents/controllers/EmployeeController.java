@@ -19,14 +19,17 @@ public class EmployeeController {
     }
     @PostMapping("/update")
     public ResponseEntity<?> updateEmployee(@RequestBody Employee employee){
-        if(employeeService.getById(employee.getId())!=null){
+        if(employeeService.getById(employee.getId())!=null&&!employee.getSurname().isEmpty()&&!employee.getFirstName().isEmpty()){
             return new ResponseEntity<>(employeeService.addEmployee(employee), HttpStatus.OK);
         }
         return new ResponseEntity<>(HttpStatus.NOT_ACCEPTABLE);
     }
     @PostMapping("/create")
     public ResponseEntity<?> createEmployee(@RequestBody Employee employee){
-        return new ResponseEntity<>(employeeService.addEmployee(employee), HttpStatus.OK);
+        if(!employee.getSurname().isEmpty()&&!employee.getFirstName().isEmpty()){
+            return new ResponseEntity<>(employeeService.addEmployee(employee), HttpStatus.OK);
+        }
+        return new ResponseEntity<>(HttpStatus.NOT_ACCEPTABLE);
     }
 
     @GetMapping("/all")

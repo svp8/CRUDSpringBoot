@@ -104,6 +104,28 @@ tr {
         background-color: antiquewhite;
     }
 }
+.pages {
+    display: flex;
+    justify-content: center;
+    &__number {
+      font-weight: 500;
+      padding: 5px;
+      margin-right: 5px;
+      width: 30px;
+      cursor: pointer;
+      &-active {
+        background-color: white;
+        border:1px solid black;
+        // color: white;
+      }
+    }
+    &__button {
+      margin-right: 5px;
+      padding: 5px;
+      background-color: white;
+        border:1px solid black;
+    }
+  }
 
 .header{
     display: flex;
@@ -138,7 +160,7 @@ tr {
                 padding: 4px;
                 border-top-left-radius: 5px;
                 border-top-right-radius: 5px;
-
+                cursor: pointer;
                 &.active {
                     background-color: white;
                 }

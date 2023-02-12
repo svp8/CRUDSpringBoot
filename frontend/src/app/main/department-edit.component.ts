@@ -42,8 +42,8 @@ export class DepartmentEditComponent implements OnInit {
     this.form = this.fb.group({
       contactInfo: "",
       id: -1,
-      manager: new FormControl("", Validators.required),
-      name: new FormControl("", Validators.required)
+      manager: new FormControl("", [Validators.required,Validators.pattern(/^(\s+\S+\s*)*(?!\s).*$/)]),
+      name: new FormControl("", [Validators.required,Validators.pattern(/^(\s+\S+\s*)*(?!\s).*$/)])
     });
   }
 
