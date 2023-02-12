@@ -8,6 +8,9 @@ backend port 8080
 frontend port 4200
 
 How to start frontend:
+npm install
+npm run start
+For build:
 npm install -g serve
 serve frontend -p 4200
 https://github.com/svp8/docsSpringBoot
